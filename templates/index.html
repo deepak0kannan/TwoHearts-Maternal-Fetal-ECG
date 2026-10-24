@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TwoHearts AI — Maternal-Fetal Cardiac Screening Platform</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- LEFT DARK CLINICAL SIDEBAR (no-print) -->
+  <aside class="app-sidebar no-print">
+    <div>
+      <!-- Brand Logo & Header -->
+      <div class="brand-box">
+        <div class="brand-icon">
+          🫀
+        </div>
+        <div class="brand-text">
+          <h1>TwoHearts <span>AI</span></h1>
+          <p>CLINICAL SCREENING TRIAGE</p>
+        </div>
+      </div>
+
+      <!-- Navigation Section -->
+      <div>
+        <span class="nav-section-title">Clinical Workspace</span>
+        <div class="nav-list">
+          <!-- Overview Button (Pops up Cohort Overview) -->
+          <button id="navOverviewBtn" class="nav-btn">
+            <span class="left-grp">
+              <svg width="16" height="16" fill="none" stroke="#06B6D4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+              Overview
+            </span>
+          </button>
+
+          <!-- Screening Box Button (Active by default) -->
+          <button id="navScreeningBtn" class="nav-btn active">
+            <span class="left-grp">
+              <svg width="16" height="16" fill="none" stroke="#10B981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Screening Box
+            </span>
+            <span class="badge-pill">24</span>
+          </button>
+
+          <!-- Validation Matrix Button -->
+          <button id="navBenchmarkBtn" class="nav-btn">
+            <span class="left-grp">
+              <svg width="16" height="16" fill="none" stroke="#A855F7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              Validation Matrix (98.4%)
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div class="engine-status-box">
+        <div class="engine-status-top">
+          <span><span class="pulsing-dot"></span>TwoHearts Engine</span>
+          <span style="color:#06B6D4; font-family:'JetBrains Mono', monospace;">500 Hz Online</span>
+        </div>
+        <p style="color:#9CA3AF; margin-top:4px;">Multi-Task 1D-CNN • SE-Attention</p>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:4px;">
+        <div style="width:32px; height:32px; border-radius:8px; background:#0E2A3A; color:#06B6D4; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px;">
+          PHC
+        </div>
+        <div style="font-size:11px; line-height:1.2;">
+          <div style="font-weight:700; color:#FFFFFF;">Rural Tele-Triage Unit</div>
+          <div style="color:#9CA3AF;">Clinical Station 01</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN RIGHT CONTENT WRAPPER -->
+  <div class="main-wrapper">
+
+    <!-- TOP CLINICAL HEADER BAR (no-print) -->
+    <header class="top-header no-print">
+      <div class="header-title-box">
+        <h2 id="topHeaderTitle">Clinical Screening Triage & Real-Time Telemetry</h2>
+        <p>Non-Invasive 4-Channel Abdominal ECG • Multi-Task Deep Learning Decision Support</p>
+      </div>
+
+      <div class="header-actions">
+        <!-- Overview Button -->
+        <button id="topOverviewBtn" class="btn btn-secondary">
+          <svg width="14" height="14" fill="none" stroke="#06B6D4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          Overview (24 Cohort)
+        </button>
+
+        <!-- Upload Recording Button -->
+        <button id="openUploadModalBtn" class="btn btn-secondary">
+          <svg width="14" height="14" fill="none" stroke="#10B981" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+          Upload ECG File
+        </button>
+
+        <!-- Examiner Validation Modal Button -->
+        <button id="topBenchmarkBtn" class="btn btn-secondary">
+          <svg width="14" height="14" fill="none" stroke="#A855F7" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Examiner Validation (98.4%)
+        </button>
+
+        <!-- Print Clinical Report Button -->
+        <button id="printReportBtn" class="btn btn-primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Print Clinical Report
+        </button>
+      </div>
+    </header>
+
+    <!-- PRINT-ONLY CLINICAL MEDICAL HEADER (Visible ONLY on print/PDF) -->
+    <div class="print-only" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #000; padding-bottom:8px;">
+        <div>
+          <h1 style="font-size:22px; font-weight:900; letter-spacing:-0.02em;">TWOHEARTS CLINICAL SCREENING REPORT</h1>
+          <p style="font-size:11px; font-weight:600; color:#4B5563;">Primary Health Centre (PHC) Maternal-Fetal Tele-Triage Unit</p>
+        </div>
+        <div style="text-align:right; font-size:11px; color:#374151;">
+          <p><strong>System:</strong> TwoHearts Multi-Task 1D-CNN (v2.0)</p>
+          <p><strong>Signal Standard:</strong> 500 Hz • 4-Lead Abdominal ECG</p>
+          <p><strong>Date:</strong> <span id="printDate">October 2026</span></p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin:10px 0; padding:10px; background:#F3F4F6; border:1px solid #D1D5DB; border-radius:6px; font-size:11px;">
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Patient ID:</strong> <span id="printPatientId" style="font-weight:800; font-size:13px;">ARR_01</span></div>
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Ground Truth Condition:</strong> <span id="printCondition" style="font-weight:700;">Arrhythmia Case</span></div>
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Analyzed Window:</strong> <span id="printTimeRange" style="font-weight:700; font-family:'JetBrains Mono', monospace;">0.0s - 10.0s</span></div>
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Maternal HR:</strong> <span id="printMaternalHR" style="font-weight:700;">77.9 bpm</span></div>
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Maternal RMSSD:</strong> <span id="printMaternalRMSSD" style="font-weight:700;">32.8 ms</span></div>
+        <div><strong style="color:#6B7280; text-transform:uppercase; font-size:9px; display:block;">Stress Index (SI):</strong> <span id="printStressIndex" style="font-weight:700;">88.0 SI</span></div>
+      </div>
+
+      <div style="padding:10px; background:#FEF2F2; border-left:4px solid #DC2626; border-radius:4px; margin-bottom:12px; font-size:11px;">
+        <span style="color:#991B1B; text-transform:uppercase; font-weight:800; font-size:9px; display:block;">Automated AI Diagnostic Conclusion:</span>
+        <div id="printDiagnosis" style="font-size:13px; font-weight:900; color:#B91C1C; margin-top:2px;">FETAL ARRHYTHMIA DETECTED (Probability: 98.3%)</div>
+        <div style="margin-top:4px; color:#1F2937; font-weight:600;">Triage Directive: <span id="printAction">Immediate Specialist Referral — Fetal Echocardiography Indicated</span></div>
+      </div>
+    </div>
+
+    <!-- CONTENT BODY (Matches Slide 5 Exactly) -->
+    <div class="content-body">
+
+      <!-- PATIENT SELECTION & STREAM CONTROL STRIP -->
+      <div class="stream-control-card no-print">
+        <!-- Patient Dropdown -->
+        <div class="patient-select-grp">
+          <label for="patientSelect">Patient Recording:</label>
+          <select id="patientSelect" class="patient-dropdown">
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+
+        <!-- Window Scrubber & Controls -->
+        <div class="time-scrubber-grp">
+          <button id="prevWindowBtn" class="icon-btn" title="Previous 10s Window">◀</button>
+
+          <div class="slider-container">
+            <div class="slider-labels">
+              <span id="windowTimeLabel">0.0s - 10.0s</span>
+              <span id="windowCounterLabel">Window 1 / 119</span>
+            </div>
+            <input type="range" id="windowSlider" min="0" max="118" value="0" class="timeline-slider">
+          </div>
+
+          <button id="nextWindowBtn" class="icon-btn" title="Next 10s Window">▶</button>
+        </div>
+
+        <!-- Play Simulation Button -->
+        <button id="playBtn" class="btn btn-cyan">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+          Play Stream
+        </button>
+      </div>
+
+      <!-- 3 CLINICAL TRIAGE DECISION CARDS ROW (Exact match to Slide 5) -->
+      <div class="triage-grid">
+
+        <!-- CARD 1: FETAL CARDIAC STATUS -->
+        <div id="fetalCard" class="triage-card">
+          <div>
+            <div class="card-top">
+              <div>
+                <span class="card-label">Head 1: Fetal Cardiac Status</span>
+                <div id="fetalStatusBadge" class="status-badge arrhythmia">
+                  🔴 ARRHYTHMIA DETECTED
+                </div>
+              </div>
+              <div class="card-metric-val">
+                <span class="sub">Arrhythmia Prob</span>
+                <span id="fetalProbValue" class="val">98.3%</span>
+              </div>
+            </div>
+
+            <div class="progress-bar-track">
+              <div id="fetalProbBar" class="progress-bar-fill red" style="width: 98.3%;"></div>
+            </div>
+          </div>
+
+          <div class="directive-box">
+            <span class="tag">Clinical Triage Recommendation:</span>
+            <p id="fetalActionText">
+              Immediate Specialist Referral — Fetal Echocardiography Indicated
+            </p>
+          </div>
+        </div>
+
+        <!-- CARD 2: MATERNAL AUTONOMIC WELLNESS -->
+        <div class="triage-card">
+          <div>
+            <div class="card-top">
+              <div>
+                <span class="card-label">Head 2: Maternal Autonomic Wellness</span>
+                <div id="maternalStatusBadge" class="status-badge normal">
+                  🟢 Normal Autonomic Function
+                </div>
+              </div>
+              <div class="card-metric-val">
+                <span class="sub">Stress Index (SI)</span>
+                <span id="maternalSIVal" class="val" style="color:#06B6D4;">88.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vitals-grid">
+            <div class="vital-slot">
+              <span>Maternal HR</span>
+              <strong id="maternalHRVal">77.9 bpm</strong>
+            </div>
+            <div class="vital-slot">
+              <span>HRV RMSSD</span>
+              <strong id="maternalRMSSDVal">32.8 ms</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: EXPLAINABLE AI (1D GRAD-CAM) CONTROLS (Hidden on print) -->
+        <div id="xaiCard" class="triage-card xai-triage-card no-print">
+          <div>
+            <span class="card-label">Explainable AI (1D Grad-CAM)</span>
+            <p class="xai-subtitle">Highlight waveform segments driving deep learning classification.</p>
+
+            <div class="xai-btns-row">
+              <button class="xai-toggle-btn" data-mode="none">Off</button>
+              <button class="xai-toggle-btn active" data-mode="fetal">Fetal Head</button>
+              <button class="xai-toggle-btn" data-mode="maternal">Maternal Head</button>
+            </div>
+          </div>
+
+          <div class="xai-slider-row">
+            <span>Heatmap Opacity:</span>
+            <input type="range" id="xaiOpacitySlider" min="0.1" max="1.0" step="0.05" value="0.5" style="width:110px; accent-color:#06B6D4; cursor:pointer;">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MAIN MULTI-LEAD ABDOMINAL ECG CANVAS VIEWER (Exact match to Slide 5) -->
+      <div class="waveform-card">
+        <div class="waveform-header">
+          <h3>
+            <span class="pulsing-dot"></span>
+            Real-Time Abdominal ECG Traces (500 Hz Standardized)
+          </h3>
+
+          <div class="leads-legend">
+            <div class="legend-item"><span class="lead-color-bar" style="background:#10B981;"></span> Abdomen 1</div>
+            <div class="legend-item"><span class="lead-color-bar" style="background:#06B6D4;"></span> Abdomen 2</div>
+            <div class="legend-item"><span class="lead-color-bar" style="background:#3B82F6;"></span> Abdomen 3</div>
+            <div class="legend-item"><span class="lead-color-bar" style="background:#A855F7;"></span> Abdomen 4</div>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="ecgCanvas" class="ecg-grid-canvas"></canvas>
+        </div>
+
+        <div class="waveform-footer">
+          <span>Scale: 10 Seconds Window (5,000 samples @ 500 Hz)</span>
+          <span class="no-print">Red/Orange spans indicate Grad-CAM saliency attention</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- OVERVIEW MODAL (Pops up when clicking Overview) -->
+<div id="overviewModal" class="modal-overlay hidden no-print">
+  <div class="modal-window">
+    <div class="modal-header">
+      <div>
+        <h3>Clinical Cohort & Triage Overview</h3>
+        <p>Comprehensive audit of all 24 patient non-invasive fetal recordings and model diagnostics.</p>
+      </div>
+      <button id="closeOverviewBtn" class="close-btn">✕</button>
+    </div>
+
+    <!-- 4 Key Cohort Metric Cards -->
+    <div class="stats-grid-4">
+      <div class="stat-metric-card">
+        <span class="label">Total Cohort</span>
+        <span class="num" style="color:#FFFFFF;">24</span>
+        <span class="sub" style="color:#10B981;">100% Validated</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">Arrhythmia Cases</span>
+        <span class="num" style="color:#EF4444;">12 / 12</span>
+        <span class="sub" style="color:#EF4444;">100% Sensitivity</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">Normal Controls</span>
+        <span class="num" style="color:#10B981;">12 / 12</span>
+        <span class="sub" style="color:#10B981;">100% Specificity</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">ROC-AUC Power</span>
+        <span class="num" style="color:#06B6D4;">0.9844</span>
+        <span class="sub" style="color:#06B6D4;">98.4% Discriminative</span>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size:12px; font-weight:800; text-transform:uppercase; color:#9CA3AF; margin-bottom:10px; display:block;">
+        All 24 Screened Patients (Click to Open in Screening Box):
+      </span>
+      <div id="patientCohortGrid" class="cohort-grid">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXAMINER BENCHMARK MODAL (no-print) -->
+<div id="benchmarkModal" class="modal-overlay hidden no-print">
+  <div class="modal-window">
+    <div class="modal-header">
+      <div>
+        <h3>5-Fold Patient-Level Stratified Cross-Validation Results</h3>
+        <p>Strict patient isolation: Zero data leakage between train and test patients.</p>
+      </div>
+      <button id="closeBenchmarkBtn" class="close-btn">✕</button>
+    </div>
+
+    <div class="stats-grid-4">
+      <div class="stat-metric-card">
+        <span class="label">ROC-AUC</span>
+        <span class="num" style="color:#06B6D4;">0.9844</span>
+        <span class="sub" style="color:#10B981;">98.4% Discriminative</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">F1-Score</span>
+        <span class="num" style="color:#10B981;">0.9249</span>
+        <span class="sub" style="color:#9CA3AF;">Harmonic Mean</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">Diagnostic Accuracy</span>
+        <span class="num" style="color:#FFFFFF;">91.95%</span>
+        <span class="sub" style="color:#9CA3AF;">3,304 Windows</span>
+      </div>
+      <div class="stat-metric-card">
+        <span class="label">Specificity</span>
+        <span class="num" style="color:#A855F7;">97.8%</span>
+        <span class="sub" style="color:#A855F7;">Low False Alarm Rate</span>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size:12px; font-weight:800; text-transform:uppercase; color:#9CA3AF; margin-bottom:8px; display:block;">
+        Cross-Validation Folds Breakdown:
+      </span>
+      <div style="overflow-x:auto; border:1px solid #1F2937; border-radius:8px;">
+        <table style="width:100%; text-align:left; font-size:12px; border-collapse:collapse; color:#D1D5DB;">
+          <thead style="background:#0E1624; color:#9CA3AF; text-transform:uppercase; font-size:10px;">
+            <tr>
+              <th style="padding:10px 14px;">Fold</th>
+              <th style="padding:10px 14px;">ROC-AUC</th>
+              <th style="padding:10px 14px;">F1-Score</th>
+              <th style="padding:10px 14px;">Accuracy</th>
+              <th style="padding:10px 14px;">Specificity</th>
+              <th style="padding:10px 14px;">Maternal Stress MAE</th>
+            </tr>
+          </thead>
+          <tbody id="cvTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size:12px; font-weight:800; text-transform:uppercase; color:#9CA3AF; margin-bottom:8px; display:block;">
+        Publication Figures:
+      </span>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div style="padding:8px; background:#0E1624; border:1px solid #1F2937; border-radius:10px;">
+          <span style="font-size:10px; font-weight:700; color:#9CA3AF; display:block; margin-bottom:4px;">Out-of-Fold ROC-AUC Curve (0.9844)</span>
+          <img src="/api/plots/overall_roc_curve.png" alt="ROC Curve" style="width:100%; border-radius:6px; display:block;">
+        </div>
+        <div style="padding:8px; background:#0E1624; border:1px solid #1F2937; border-radius:10px;">
+          <span style="font-size:10px; font-weight:700; color:#9CA3AF; display:block; margin-bottom:4px;">Out-of-Fold Confusion Matrix (3,304 Windows)</span>
+          <img src="/api/plots/overall_confusion_matrix.png" alt="Confusion Matrix" style="width:100%; border-radius:6px; display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL (no-print) -->
+<div id="uploadModal" class="modal-overlay hidden no-print">
+  <div class="modal-window" style="max-width:550px;">
+    <div class="modal-header">
+      <div>
+        <h3>Upload Abdominal ECG Recording</h3>
+        <p>Direct ingestion into the TwoHearts 1D-CNN DL pipeline.</p>
+      </div>
+      <button id="closeUploadModalBtn" class="close-btn">✕</button>
+    </div>
+
+    <div id="modalDropzone" class="file-dropzone">
+      <input type="file" id="modalFileInput" style="display:none;" multiple accept=".dat,.hea,.csv,.xlsx,.npz">
+      <svg width="40" height="40" fill="none" stroke="#06B6D4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+      <p style="font-size:14px; font-weight:700; color:#F3F4F6;">
+        Drag & drop recording files here or <span id="modalBrowseBtn" style="color:#06B6D4; text-decoration:underline; cursor:pointer;">browse files</span>
+      </p>
+      <p style="font-size:11px; color:#9CA3AF; margin-top:4px;">
+        PhysioNet (.dat + .hea), CSV, XLSX, or NPZ (Max 50 MB)
+      </p>
+      <div id="modalUploadStatus" style="margin-top:12px; font-size:12px; font-weight:700;"></div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px; border-top:1px solid #1F2937; font-size:12px; color:#9CA3AF;">
+      <span>Need to test with sample data?</span>
+      <button id="modalLoadDemoBtn" style="background:none; border:none; color:#06B6D4; font-weight:700; text-decoration:underline; cursor:pointer;">
+        Load Sample Arrhythmia Case (ARR_01)
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS (Pure UTF-8, Zero BOM) -->
+<script src="/static/js/ecg_canvas.js?v=2.2"></script>
+<script src="/static/js/app.js?v=2.2"></script>
+</body>
+</html>

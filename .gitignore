@@ -1,0 +1,95 @@
+# ==============================================================================
+# TwoHearts - Git Ignore Configuration
+# ==============================================================================
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Operating System & IDE Artifacts
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Runtime Uploads & Temporary Cache
+uploads/*
+!uploads/.gitkeep
+tmp/
+*.tmp
+
+# Large Raw PhysioNet Datasets (>1 GB)
+non-invasive-fetal-ecg-arrhythmia-database-1.0.0/
+non-invasive-fetal-ecg-database-1.0.0/
+
+# Generated Large Dataset Cache (>100MB exceeds GitHub push limit)
+# Note: twohearts_samples.npz (~8.5 MB) is tracked for immediate out-of-the-box demo
+TwoHearts_DL/results/twohearts_dataset.npz
+Preprocessing/ARR_01_abdomen_norm.csv
+Preprocessing/ARR_01_abdomen_norm.xlsx
+
+# Archives & ZIP files
+*.zip
+*.tar.gz
+*.rar
+
+# Documents & Presentations (Local only, not pushed to repo)
+*.docx
+*.doc
+*.pptx
+*.ppt
+
+# Images, Figures & Plots (Local only, not pushed to repo)
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+TwoHearts_DL/results/plots/
+TwoHearts_DL/results/xai/
+
+# Development Scratch & OCR Scripts
+build_crisp_13page_report.py
+build_review_presentation_v3.py
+generate_cnn_workflow_diagram.py
+TwoHearts_Project_Chat_Log.md
+extracted_ppt_images/
+final_rev_ppt_images/
+midrev_extracted_*
+midrev_slide_*
+s9_*
+s10_*
+s11_*
+slide_9_thumb.png
+current_dashboard_thumb.png
+ppt_media*
+cover_image.jpeg
+*ocr*.ps1
+inspect_*.ps1
+inspect_*.py
+check_word.ps1
+tune_pages.py
+create_midrev_style_ppt.py
+build_full_report.py
+build_sih_report.py
+create_report.py
+create_twohearts_review_ppt.py
+create_project_zip.py
